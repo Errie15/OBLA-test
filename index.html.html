@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENTION OBLA-Test</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/FRwbMSBN/SENTION-logo-Black-Transparent-BG.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+       body {
+    font-family: 'Roboto', sans-serif;
+    background: #f0eeec;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 0;
+    background-attachment: fixed;
+    position: relative; /* Added for positioning the bottom logo */
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: right;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    position: relative;
+    border-radius: 15px 15px 15px 15px;
+    font-family: 'Verdana', sans-serif; /* Ändra till önskad font */
+    font-size: 0.9rem; /* Ändra storlek om det behövs */
+    font-weight: medium; /* Ändra tjocklek om det behövs */
+    padding-left: 100px; /* Adjust this value to move text more or less to the right */
+    padding-top: 10px;
+}
+
+.logo-container {
+    position: absolute;
+    left: 320px;
+    top: 49px;
+}
+
+.logo-container img {
+    height: 30px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+h1 {
+    height: 107px;
+    color: #444444;
+    font-family: 'Verdana', sans-serif;
+    font-size: 2.2rem;
+    font-weight: bold;
+    display: flex;           /* Lägger till flex */
+    align-items: center;     /* Centrerar vertikalt */
+    margin: 0;              /* Tar bort margin-bottom */
+}
+
+table {
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    width: 80%;
+    max-width: 800px;
+    background-color: #c0c0c0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+th, td {
+    border: none;
+    padding: 12px;
+    text-align: center;
+    color: #333;
+}
+
+th {
+    background-color: #d0d0d0;
+}
+
+td {
+    background-color: #e0e0e0;
+}
+
+input[type="number"] {
+    background-color: #f0f0f0;
+    border: none;
+    color: #333;
+    text-align: center;
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    box-shadow: 0 0 5px #00bcd4;
+}
+
+#chartContainer {
+    width: 80%;
+    max-width: 1000px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(102, 101, 101, 0.3);
+    border-radius: 8px;
+    margin-top: 40px; /* Added margin to move the chart down */
+    margin-bottom: 100px;
+}
+
+#thresholdTable {
+    margin-top: 60px; /* Added margin to move the table down */
+}
+
+.controls {
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#controls {
+    background-color: #f8f9fa; /* Light gray background */
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+.controls label {
+    margin-right: 10px;
+    color: #333;
+}
+
+.btn {
+    background-color: #d6d2ce;
+    border: none;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.btn:hover {
+    background-color: #b4aca4;
+}
+
+.mb-3 {
+    width: 80%; /* Adjust this value to your desired width */
+    max-width: 800px; /* Optional: set a maximum width */
+    margin: 0 auto; /* Center the container */
+}
+
+.weight-container {
+    width: 25%;
+    max-width: 200px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+#weightInput,
+#horizontalLine1,
+#horizontalLine2,
+#verticalLine1,
+#verticalLine2 {
+    background-color: #f8f9fa; /* Light gray background */
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+#commentInput {
+    width: 100%; /* Make the textarea fill the container */
+    min-height: 50px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    overflow-y: hidden;
+    resize: none;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.bottom-logo {
+    position: absolute;
+    bottom: -100px;
+    right: 10px;
+    height: 80px; /* Adjust the size as needed */
+    border-radius: 3px 3px 3x 3px;
+}
+
+.input-group {
+    position: relative;
+    margin: 10px;
+}
+
+.input-group input {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.input-group input {
+    border-radius: 7px !important; /* Tvinga alla hörn att vara rundade */
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #d3d0cc;
+    box-shadow: 0 0 0 3px #F0EEEC;
+}
+
+.input-group label {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    background: white;
+    padding: 0 0.2rem;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+    top: -10px;
+    left: 0.4rem;
+    font-size: 0.75rem;
+    color: #000000;
+    background: white;
+    padding: 0 0.2rem;
+}
+
+/* Specifika stilar för olika input-typer */
+#dateInput,
+#personnummerInput {
+    width: 200px;
+}
+
+#nameInput {
+    width: auto;
+    min-width: 200px;
+    max-width: none;
+    text-align: left;
+}
+
+.input-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+        @media print {
+    #weightSection, #dataTable, .controls, .btn {
+        display: none; /* Hide unnecessary sections when printing */
+    }
+    #thresholdTable {
+        display: table; /* Ensure the table is visible when printing */
+        margin-top: 20px; /* Move the table down by 20px */
+        page-break-before: always; /* Force the table to start on a new page */
+    }
+    
+    #chartContainer {
+        width: 80%; /* Adjust the width of the chart container */
+        max-width: 800px; /* Optional: Set a maximum width for the chart */
+        margin-top: 20px; /* Move the table down by 20px */
+    }
+    canvas {
+        width: 100% !important; /* Ensure the canvas fits the container */
+        height: auto !important; /* Maintain the aspect ratio */
+    }
+}
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://i.postimg.cc/T1r2R8Ch/SENTION-text-black.png" alt="Logo" class="logo">
+        </div>
+        <h1> Onset of Blood Lactate Accumulation</h1>
+        </div>
+    </header>
+    <div class="input-row">
+        <div class="input-group">
+            <input type="text" id="nameInput" placeholder=" " required>
+            <label for="nameInput">Namn</label>
+        </div>
+        <div class="input-group">
+            <input type="text" id="personnummerInput" placeholder=" " required>
+            <label for="personnummerInput">Personnummer</label>
+        </div>
+        <div class="input-group">
+            <input type="date" id="dateInput" placeholder=" " required>
+            <label for="dateInput">Datum</label>
+        </div>
+    </div>
+        </div>
+</div>
+    </div>
+    <div id="chartContainer">
+        <canvas id="myChart"></canvas>
+    </div>
+    <div class="weight-container" id="weightSection">
+        <label for="weightInput" class="form-label">Vikt (kg):</label>
+        <input type="number" id="weightInput" class="form-control" value="" oninput="updateTable()">
+    </div>
+    <table id="dataTable" class="table">
+        <thead>
+            <tr>
+                <th>Belastning (Watt)</th>
+                <th>Belastning (Watt/kg)</th>
+                <th>Puls</th>
+                <th>Laktat</th>
+                <th>BORG</th> <!-- New column for BORG -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="number" value="100" oninput="calculateWattKg(this)"></td>
+                <td><input type="number" readonly></td>
+                <td><input type="number" value="100"></td>
+                <td><input type="number" value="0.7"></td>
+                <td><input type="number" value="6"></td>
+            </tr>
+            <tr>
+                <td><input type="number" value="105" oninput="calculateWattKg(this)"></td>
+                <td><input type="number" readonly></td>
+                <td><input type="number" value="110"></td>
+                <td><input type="number" value="0.6"></td>
+                <td><input type="number" value="7"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <!-- Buttons for adding and removing rows -->
+    <div>
+        <button class="btn" onclick="addRow()">Lägg till rad</button>
+        <button class="btn btn-danger" onclick="removeLastRow()">Ta bort rad</button>
+    </div>
+    <div class="controls">
+        <div>
+            <label for="horizontalLine1" class="form-label">Horisontell Linje (2 mmol):</label>
+            <input type="number" id="horizontalLine1" class="form-control" value="2" step="0.1" oninput="updateAnnotations()">
+        </div>
+        <div>
+            <label for="horizontalLine2" class="form-label">Horisontell Linje (4 mmol):</label>
+            <input type="number" id="horizontalLine2" class="form-control" value="4" step="0.1" oninput="updateAnnotations()">
+        </div>
+        <div>
+            <label for="verticalLine1" class="form-label">Vertikal Linje (2 mmol):</label>
+            <input type="number" id="verticalLine1" class="form-control" value="1.8" step="0.01" oninput="updateAnnotations()">
+        </div>
+        <div>
+            <label for="verticalLine2" class="form-label">Vertikal Linje (4 mmol):</label>
+            <input type="number" id="verticalLine2" class="form-control" value="2.8" step="0.01" oninput="updateAnnotations()">
+        </div>
+    </div>
+    <button class="btn" onclick="toggleVerticalLines()">På/Av Vertikala Linjer</button>
+    <button class="btn" onclick="updateChart()">Uppdatera graf</button>
+    
+    <!-- Empty header for the threshold table -->
+    <h2></h2>
+    
+    <table id="thresholdTable" class="table">
+        <thead>
+            <tr>
+                <th>Trösklar</th>
+                <th>Belastning (Watt)</th>
+                <th>Belastning (Watt/kg)</th>
+                <th>Puls</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2.0 mMol/l</td>
+                <td><input type="number" id="watt2" oninput="calculateThresholdWattKg(2)"></td>
+                <td><input type="number" id="wattKg2" readonly></td>
+                <td><input type="number" id="pulse2"></td>
+            </tr>
+            <tr>
+                <td>4.0 mMol/l</td>
+                <td><input type="number" id="watt4" oninput="calculateThresholdWattKg(4)"></td>
+                <td><input type="number" id="wattKg4" readonly></td>
+                <td><input type="number" id="pulse4"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="mb-3">
+        <h6>Kommentar:</h6>
+        <textarea id="commentInput" placeholder="Skriv din kommentar här..."></textarea>
+    </div>
+    <div class="mb-3">
+        <h6>Tolkat av:</h6>
+        <select id="interpretedBy" class="form-select">
+            <option value="" selected>Välj vem som utfört tolkningen</option>
+            <option value="Per Andersson">Överläkare Per "Pliggen" Andersson</option>
+        </select>
+    </div>
+    <button class="btn" onclick="exportAsJPEG()">Spara JPEG</button>
+    <button class="btn" onclick="exportAsExcel()">Spara Excel</button>
+    </div>
+    <img src="https://i.postimg.cc/x1PkvmGq/SENTION-logo-Black-Transparent-BG.png" alt="Logo" class="bottom-logo">
+    <script>
+        const adjustInputWidth = (input) => {
+    // Create a temporary span element to measure the text width
+    const tempSpan = document.createElement('span');
+    tempSpan.style.visibility = 'hidden';
+    tempSpan.style.position = 'absolute';
+    tempSpan.style.whiteSpace = 'nowrap';
+    tempSpan.style.font = window.getComputedStyle(input).font; // Match the input's font
+    tempSpan.textContent = input.value || input.placeholder;
+
+    document.body.appendChild(tempSpan);
+
+    // Calculate the new width, including padding and borders
+    const padding = parseFloat(window.getComputedStyle(input).paddingLeft) +
+                    parseFloat(window.getComputedStyle(input).paddingRight);
+    const border = parseFloat(window.getComputedStyle(input).borderLeftWidth) +
+                   parseFloat(window.getComputedStyle(input).borderRightWidth);
+    const newWidth = tempSpan.offsetWidth + padding + border + 10; // Add extra padding for comfort
+
+    input.style.width = `${newWidth}px`;
+
+    document.body.removeChild(tempSpan);
+};
+
+// Attach the function to the "Namn" input
+const nameInput = document.getElementById('nameInput');
+nameInput.addEventListener('input', function () {
+    adjustInputWidth(this);
+});
+
+// Initialize the width on page load
+adjustInputWidth(nameInput);
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Puls',
+                    data: [],
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderWidth: 2,
+                    yAxisID: 'y',
+                    tension: 0.4,
+                    fill: true,
+                }, {
+                    label: 'Laktat',
+                    data: [],
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderWidth: 2,
+                    yAxisID: 'y2',
+                    tension: 0.4,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Belastning (Watt/kg)',
+                            color: '#333',
+                            font: {
+                                family: 'Roboto',
+                                size: 16, // Increased font size for clarity
+                                weight: 'bold',
+                                lineHeight: 1.2
+                            },
+                            padding: {top: 20}
+                        },
+                        ticks: {
+                            color: '#333',
+                            font: {
+                                family: 'Roboto',
+                                size: 12 // Increased font size for clarity
+                            }
+                        }
+                    },
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        min: 50,
+                        suggestedMax: 200, // Allows the chart to expand if values exceed 180
+                        title: {
+                            display: true,
+                            text: 'Puls',
+                            color: '#333',
+                            font: {
+                                family: 'Roboto',
+                                size: 16, // Increased font size for clarity
+                                weight: 'bold',
+                                lineHeight: 1.2
+                            },
+                            padding: {top: 30}
+                        },
+                        ticks: {
+                            color: '#333',
+                            font: {
+                                family: 'Roboto',
+                                size: 12 // Increased font size for clarity
+                            }
+                        }
+                    },
+                    y2: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        min: 0,
+                        max: 5,
+                        title: {
+                            display: true,
+                            text: 'Laktat',
+                            color: '#333',
+                            font: {
+                                family: 'Roboto',
+                                size: 16, // Increased font size for clarity
+                                weight: 'bold',
+                                lineHeight: 1.2
+                            },
+                            padding: {top: 30}
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                        ticks: {
+                            color: '#333',
+                            font: {
+                                family: 'Roboto',
+                                size: 12 // Increased font size for clarity
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                yMin: 2,
+                                yMax: 2,
+                                borderColor: 'rgba(0, 255, 0, 0.5)',
+                                borderWidth: 2,
+                                borderDash: [5, 5],
+                                yScaleID: 'y2'
+                            },
+                            line2: {
+                                type: 'line',
+                                yMin: 4,
+                                yMax: 4,
+                                borderColor: 'rgba(0, 0, 255, 0.5)',
+                                borderWidth: 2,
+                                borderDash: [5, 5],
+                                yScaleID: 'y2'
+                            },
+                            verticalLine1: {
+                                type: 'line',
+                                xMin: 1.8,
+                                xMax: 1.8,
+                                borderColor: 'rgba(255, 165, 0, 0.5)',
+                                borderWidth: 2,
+                                borderDash: [5, 5],
+                                xScaleID: 'x'
+                            },
+                            verticalLine2: {
+                                type: 'line',
+                                xMin: 2.8,
+                                xMax: 2.8,
+                                borderColor: 'rgba(255, 165, 0, 0.5)',
+                                borderWidth: 2,
+                                borderDash: [5, 5],
+                                xScaleID: 'x'
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
+        });
+
+        const calculateWattKg = (input) => {
+            const row = input.closest('tr');
+            const watt = parseFloat(input.value);
+            const weight = parseFloat(document.getElementById('weightInput').value);
+            const wattKgCell = row.cells[1].querySelector('input');
+            wattKgCell.value = weight > 0 ? formatNumber(watt / weight) : '';
+            updateChart();
+        };
+
+        const updateTable = () => {
+            document.querySelectorAll('#dataTable tbody tr').forEach(row => {
+                calculateWattKg(row.cells[0].querySelector('input'));
+            });
+        };
+
+        const updateChart = () => {
+    const wattKgData = [], pulseData = [], lactateData = [];
+    
+    // Collect data from the table
+    document.querySelectorAll('#dataTable tbody tr').forEach(row => {
+        const cells = row.querySelectorAll('input');
+        wattKgData.push(parseFloat(cells[1].value));
+        pulseData.push(parseFloat(cells[2].value));
+        lactateData.push(parseFloat(cells[3].value));
+    });
+
+    // Update chart data
+    myChart.data.labels = wattKgData;
+    myChart.data.datasets[0].data = pulseData.map(formatPulse);
+    myChart.data.datasets[1].data = lactateData.map(formatNumber);
+
+    // Dynamically calculate the min and max for the y2-axis (Laktat)
+    const lactateMin = Math.min(...lactateData) - 0.5; // Add some padding
+    const lactateMax = Math.max(...lactateData) + 0.5;
+
+    // Update only the y2-axis (Laktat)
+    myChart.options.scales.y2.min = lactateMin > 0 ? lactateMin : 0; // Ensure no negative values
+    myChart.options.scales.y2.max = lactateMax;
+
+    // Recalculate intersections
+    const intersection1 = findIntersection(wattKgData, lactateData, 2);
+    const intersection2 = findIntersection(wattKgData, lactateData, 4);
+
+    // Update intersection values in the UI
+    document.getElementById('verticalLine1').value = formatNumber(intersection1);
+    document.getElementById('verticalLine2').value = formatNumber(intersection2);
+
+    // Update threshold table and annotations
+    updateThresholdTable(intersection1, intersection2, pulseData, wattKgData);
+    updateAnnotations();
+
+    // Update the chart
+    myChart.update();
+};
+
+        const findIntersection = (wattKgData, lactateData, target) => {
+            for (let i = 0; i < lactateData.length - 1; i++) {
+                if ((lactateData[i] <= target && lactateData[i + 1] >= target) ||
+                    (lactateData[i] >= target && lactateData[i + 1] <= target)) {
+                    const x1 = wattKgData[i], x2 = wattKgData[i + 1];
+                    const y1 = lactateData[i], y2 = lactateData[i + 1];
+                    return x1 + (target - y1) * (x2 - x1) / (y2 - y1);
+                }
+            }
+            return wattKgData[0];
+        };
+
+        const updateAnnotations = () => {
+            const horizontalLine1Value = parseFloat(document.getElementById('horizontalLine1').value);
+            const horizontalLine2Value = parseFloat(document.getElementById('horizontalLine2').value);
+            const verticalLine1Value = parseFloat(document.getElementById('verticalLine1').value);
+            const verticalLine2Value = parseFloat(document.getElementById('verticalLine2').value);
+
+            myChart.options.plugins.annotation.annotations.line1.yMin = horizontalLine1Value;
+            myChart.options.plugins.annotation.annotations.line1.yMax = horizontalLine1Value;
+            myChart.options.plugins.annotation.annotations.line2.yMin = horizontalLine2Value;
+            myChart.options.plugins.annotation.annotations.line2.yMax = horizontalLine2Value;
+            myChart.options.plugins.annotation.annotations.verticalLine1.xMin = verticalLine1Value;
+            myChart.options.plugins.annotation.annotations.verticalLine1.xMax = verticalLine1Value;
+            myChart.options.plugins.annotation.annotations.verticalLine2.xMin = verticalLine2Value;
+            myChart.options.plugins.annotation.annotations.verticalLine2.xMax = verticalLine2Value;
+
+            myChart.update();
+        };
+
+        const updateThresholdTable = (intersection1, intersection2, pulseData, wattKgData) => {
+            const weight = parseFloat(document.getElementById('weightInput').value);
+            const watt2 = intersection1 * weight;
+            const watt4 = intersection2 * weight;
+
+            document.getElementById('watt2').value = formatNumber(watt2);
+            document.getElementById('wattKg2').value = formatNumber(intersection1);
+            document.getElementById('pulse2').value = formatPulse(getPulseAtIntersection(intersection1, wattKgData, pulseData));
+
+            document.getElementById('watt4').value = formatNumber(watt4);
+            document.getElementById('wattKg4').value = formatNumber(intersection2);
+            document.getElementById('pulse4').value = formatPulse(getPulseAtIntersection(intersection2, wattKgData, pulseData));
+        };
+
+        const calculateThresholdWattKg = (threshold) => {
+            const weight = parseFloat(document.getElementById('weightInput').value);
+            const wattInput = document.getElementById(`watt${threshold}`);
+            const wattKgInput = document.getElementById(`wattKg${threshold}`);
+            const watt = parseFloat(wattInput.value);
+            wattKgInput.value = weight > 0 ? formatNumber(watt / weight) : '';
+        };
+
+        const getPulseAtIntersection = (intersection, wattKgData, pulseData) => {
+            for (let i = 0; i < wattKgData.length - 1; i++) {
+                if ((wattKgData[i] <= intersection && wattKgData[i + 1] >= intersection) ||
+                    (wattKgData[i] >= intersection && wattKgData[i + 1] <= intersection)) {
+                    const x1 = wattKgData[i], x2 = wattKgData[i + 1];
+                    const y1 = pulseData[i], y2 = pulseData[i + 1];
+                    return y1 + (intersection - x1) * (y2 - y1) / (x2 - x1);
+                }
+            }
+            return pulseData[0];
+        };
+
+        const addRow = () => {
+    const table = document.querySelector('#dataTable tbody');
+    const newRow = table.insertRow();
+
+    // Add cells for Belastning (Watt), Belastning (Watt/kg), Puls, Laktat, and BORG
+    for (let i = 0; i < 5; i++) {
+        const newCell = newRow.insertCell();
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.className = 'form-control';
+        if (i === 0) input.oninput = () => calculateWattKg(input); // Attach calculateWattKg to the first column
+        newCell.appendChild(input);
+    }
+};
+
+        const removeLastRow = () => {
+            const table = document.querySelector('#dataTable tbody');
+            if (table.rows.length > 0) {
+                table.deleteRow(-1); // Remove the last row
+            } else {
+                alert("Det finns inga rader att ta bort!"); // Alert if no rows are left
+            }
+        };
+
+        const formatNumber = (num) => {
+            return num.toFixed(2).replace(/\.?0+$/, '');
+        };
+
+        const formatPulse = (num) => {
+            return Math.round(num);
+        };
+
+        document.getElementById('dateInput').valueAsDate = new Date();
+
+        document.getElementById('commentInput').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
+        updateAnnotations();
+
+        let verticalLinesVisible = true; // Track the visibility state of the vertical lines
+
+const toggleVerticalLines = () => {
+    verticalLinesVisible = !verticalLinesVisible; // Toggle the visibility state
+
+    // Update the visibility of the vertical lines
+    myChart.options.plugins.annotation.annotations.verticalLine1.display = verticalLinesVisible;
+    myChart.options.plugins.annotation.annotations.verticalLine2.display = verticalLinesVisible;
+
+    // Update the chart to reflect the changes
+    myChart.update();
+};
+
+function exportAsJPEG() {
+    const element = document.documentElement; // Capture the entire HTML document
+
+    // Get patient data
+    const dateInput = document.getElementById('dateInput');
+    const nameInput = document.getElementById('nameInput');
+    const personnummerInput = document.getElementById('personnummerInput');
+    const textarea = document.getElementById('commentInput'); // The Kommentar textarea
+
+    const date = dateInput.value;
+    const name = nameInput.value.trim();
+    const personnummer = personnummerInput.value.trim();
+
+    // Validate inputs
+    if (!date || !name || !personnummer) {
+        alert("Vänligen fyll i alla fält (Datum, Namn, Personnummer) innan export.");
+        return;
+    }
+
+    // Generate filename
+    const formattedDate = date.replace(/-/g, ''); // Remove dashes from the date
+    const sanitizedName = name.replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '_'); // Remove special characters and replace spaces with underscores
+    const sanitizedPersonnummer = personnummer.replace(/[^a-zA-Z0-9]/g, ''); // Remove special characters
+    const filename = `OBLA-Test_${formattedDate}_${sanitizedName}_${sanitizedPersonnummer}.jpeg`;
+
+    // Elements to hide during export
+    const elementsToHide = [
+        document.querySelector('button[onclick="exportAsJPEG()"]'), // Button for "Spara JPEG"
+        document.querySelector('button[onclick="exportAsExcel()"]'), // Button for "Spara Excel"
+        document.querySelector('button[onclick="toggleVerticalLines()"]'), // Button for "På/Av Vertikala Linjer"
+        document.querySelector('button[onclick="updateChart()"]'), // Button for "Uppdatera Graf"
+        document.querySelector('button[onclick="addRow()"]'), // Button for "Lägg till rad"
+        document.querySelector('button[onclick="removeLastRow()"]'), // Button for "Ta bort rad"
+        document.querySelector('label[for="horizontalLine1"]'), // Label for "Horisontell Linje (2 mmol)"
+        document.querySelector('label[for="horizontalLine2"]'), // Label for "Horisontell Linje (4 mmol)"
+        document.querySelector('label[for="verticalLine1"]'), // Label for "Vertikal Linje (2 mmol)"
+        document.querySelector('label[for="verticalLine2"]'), // Label for "Vertikal Linje (4 mmol)"
+        document.getElementById('horizontalLine1'), // Textbox for "Horisontell Linje (2 mmol)"
+        document.getElementById('horizontalLine2'), // Textbox for "Horisontell Linje (4 mmol)"
+        document.getElementById('verticalLine1'), // Textbox for "Vertikal Linje (2 mmol)"
+        document.getElementById('verticalLine2') // Textbox for "Vertikal Linje (4 mmol)"
+    ];
+
+    // Hide the specified elements
+    elementsToHide.forEach(el => {
+        if (el) el.style.display = 'none';
+    });
+
+    // Replace the textarea with a styled div for proper rendering
+    const textareaDiv = document.createElement('div');
+    textareaDiv.innerHTML = textarea.value.replace(/\n/g, '<br>'); // Preserve line breaks
+    textareaDiv.style.cssText = `
+        display: block;
+        white-space: pre-wrap; /* Preserve spaces and line breaks */
+        word-wrap: break-word; /* Ensure long words break properly */
+        font-family: ${window.getComputedStyle(textarea).fontFamily};
+        font-size: ${window.getComputedStyle(textarea).fontSize};
+        line-height: ${window.getComputedStyle(textarea).lineHeight};
+        padding: ${window.getComputedStyle(textarea).padding};
+        border: ${window.getComputedStyle(textarea).border};
+        border-radius: ${window.getComputedStyle(textarea).borderRadius};
+        width: ${textarea.offsetWidth}px;
+        height: ${textarea.offsetHeight}px;
+        background: ${window.getComputedStyle(textarea).backgroundColor};
+        color: ${window.getComputedStyle(textarea).color};
+        margin-top: ${window.getComputedStyle(textarea).marginTop};
+        margin-bottom: ${window.getComputedStyle(textarea).marginBottom};
+    `;
+    textarea.style.display = 'none'; // Hide the original textarea
+    textarea.parentNode.insertBefore(textareaDiv, textarea); // Insert the div before the textarea
+
+    // Use html2canvas to export the page
+    html2canvas(element, {
+        scale: 2, // Increase resolution for better quality
+        useCORS: true, // Allow cross-origin images
+        scrollX: 0, // Ensure no horizontal scrolling
+        scrollY: 0, // Start rendering from the top of the page
+        windowWidth: document.documentElement.scrollWidth, // Full page width
+        windowHeight: document.documentElement.scrollHeight // Full page height
+    }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = filename; // Use the dynamically generated filename
+        link.href = canvas.toDataURL('image/jpeg', 1.0); // Convert canvas to JPEG
+        link.click();
+
+        // Restore the original textarea and remove the temporary div
+        textarea.style.display = 'block'; // Show the original textarea
+        textareaDiv.remove(); // Remove the temporary textarea div
+
+        // Show the hidden elements again
+        elementsToHide.forEach(el => {
+            if (el) el.style.display = 'block';
+        });
+    }).catch(error => {
+        console.error("An error occurred while exporting the page as JPEG:", error);
+        alert("Ett fel inträffade vid exporten. Kontrollera konsolen för mer information.");
+
+        // Restore the original textarea and remove the temporary div in case of an error
+        textarea.style.display = 'block'; // Show the original textarea
+        textareaDiv.remove(); // Remove the temporary textarea div
+
+        // Show the hidden elements again
+        elementsToHide.forEach(el => {
+            if (el) el.style.display = 'block';
+        });
+    });
+}
+
+function exportAsExcel() {
+    // Hämta data från input-fälten
+    const date = document.getElementById('dateInput').value;
+    const name = document.getElementById('nameInput').value.trim();
+    const personnummer = document.getElementById('personnummerInput').value.trim();
+    const weight = document.getElementById('weightInput').value;
+    const comment = document.getElementById('commentInput').value.trim(); // Hämta kommentaren
+
+    // Validera att obligatoriska fält är ifyllda
+    if (!date || !name || !personnummer) {
+        alert("Vänligen fyll i alla fält (Datum, Namn, Personnummer) innan export.");
+        return;
+    }
+
+    // Hämta tröskeldata
+    const watt2 = document.getElementById('watt2').value;
+    const wattKg2 = document.getElementById('wattKg2').value;
+    const pulse2 = document.getElementById('pulse2').value;
+
+    const watt4 = document.getElementById('watt4').value;
+    const wattKg4 = document.getElementById('wattKg4').value;
+    const pulse4 = document.getElementById('pulse4').value;
+
+    // Förbered data för Excel-filen (allt på en rad)
+    const data = [
+        [
+            'Datum', 'Personnummer', 'Namn', 'Vikt', 
+            'Tröskel 2.0 mMol/l Belastning (Watt)', 'Tröskel 2.0 mMol/l Belastning (Watt/kg)', 'Tröskel 2.0 mMol/l Puls',
+            'Tröskel 4.0 mMol/l Belastning (Watt)', 'Tröskel 4.0 mMol/l Belastning (Watt/kg)', 'Tröskel 4.0 mMol/l Puls',
+            'Kommentar'
+        ],
+        [
+            date, personnummer, name, weight, 
+            watt2, wattKg2, pulse2, 
+            watt4, wattKg4, pulse4, 
+            comment
+        ]
+    ];
+
+    // Skapa en ny arbetsbok och ett kalkylblad
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.aoa_to_sheet(data);
+
+    // Lägg till kalkylbladet i arbetsboken
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'OBLA-Test');
+
+    // Generera filnamn
+    const formattedDate = date.replace(/-/g, ''); // Ta bort bindestreck från datumet
+    const sanitizedName = name.replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '_'); // Ta bort specialtecken och ersätt mellanslag med understreck
+    const sanitizedPersonnummer = personnummer.replace(/[^a-zA-Z0-9]/g, ''); // Ta bort specialtecken
+    const filename = `OBLA-Test_${formattedDate}_${sanitizedName}_${sanitizedPersonnummer}.xlsx`;
+
+    // Spara Excel-filen
+    XLSX.writeFile(workbook, filename);
+}
+
+    </script>
+</body>
+</html>
